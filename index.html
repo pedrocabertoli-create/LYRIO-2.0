@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#b8894b">
+<title>LYRIO | Prata 925 • Semijoias</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--gold:#b8894b;--gold2:#d2ad78;--deep:#80572f;--ink:#38271d;--cream:#fffaf4;--pale:#f5e8d9;--line:#dfc9ad;--green:#229b59}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--cream);color:var(--ink);font-family:Montserrat,Arial,sans-serif}
+button,a{font:inherit}
+button{cursor:pointer}
+a{color:inherit;text-decoration:none}
+
+.announcement{height:34px;display:flex;align-items:center;justify-content:center;background:linear-gradient(90deg,#b8894b,#d4b17d,#b8894b);color:#fff;font:600 11px Montserrat,sans-serif;letter-spacing:1.1px;text-align:center;padding:0 12px}
+.site-header{height:82px;background:#fff8ef;border-bottom:1px solid #ead8c2;display:grid;grid-template-columns:70px 1fr 150px;align-items:center;padding:0 22px;position:sticky;top:0;z-index:20}
+.menu-toggle,.header-icon{border:0;background:transparent;color:var(--deep);font-size:27px;padding:8px}
+.menu-toggle{justify-self:start}
+.brand{justify-self:center;text-align:center;color:var(--deep);font:500 49px/ .82 "Cormorant Garamond",serif;letter-spacing:5px;white-space:nowrap}
+.brand small{display:block;font:600 9px Montserrat,sans-serif;letter-spacing:1.8px;margin-top:10px}
+.header-actions{justify-self:end;display:flex;align-items:center;gap:14px}
+.header-icon{position:relative}
+.count{position:absolute;top:0;right:0;background:var(--gold);color:#fff;border-radius:50%;width:17px;height:17px;font:600 10px Montserrat;display:grid;place-items:center}
+
+.drawer-shade{position:fixed;inset:0;background:#24170f88;z-index:39;opacity:0;visibility:hidden;transition:.25s}
+.drawer-shade.show{opacity:1;visibility:visible}
+.drawer{position:fixed;z-index:40;inset:0 auto 0 0;width:min(300px,88vw);background:#fff8ef;box-shadow:8px 0 30px #2a160f22;transform:translateX(-105%);transition:.28s;padding:20px 18px;overflow:auto}
+.drawer.open{transform:translateX(0)}
+.drawer-top{display:flex;justify-content:space-between;align-items:flex-start;border-bottom:1px solid var(--line);padding-bottom:18px}
+.drawer .brand{font-size:36px;justify-self:auto}
+.drawer-close{border:0;background:none;color:var(--deep);font-size:28px}
+.drawer-nav{display:grid;gap:0;padding:15px 0}
+.drawer-nav a,.drawer-nav button{display:flex;align-items:center;gap:13px;padding:13px 5px;border:0;border-bottom:1px solid #eadbca;background:none;text-align:left;color:var(--ink);font:500 16px "Cormorant Garamond",serif}
+.drawer-nav a:hover,.drawer-nav button:hover{color:var(--gold)}
+.drawer-mark{margin-top:28px;text-align:center;color:var(--gold);font:500 25px "Cormorant Garamond",serif}
+.drawer-mark small{display:block;color:#806b55;font:10px Montserrat}
+.contact-question{display:none;background:#f4e2ce;border-radius:12px;padding:13px;margin:7px 0}
+.contact-question.show{display:block}
+.contact-question p{margin:0 0 10px;font:600 15px "Cormorant Garamond",serif}
+.question-actions{display:flex;gap:8px}
+.question-actions button{flex:1;border:1px solid var(--gold);border-radius:22px;padding:8px;background:var(--gold);color:white;font-size:11px}
+.question-actions button:last-child{background:transparent;color:var(--deep)}
+
+.hero{min-height:300px;height:clamp(300px,32vw,390px);display:flex;align-items:center;padding:35px 8%;color:#fff;background:linear-gradient(90deg,rgba(85,49,25,.78),rgba(85,49,25,.22) 58%,rgba(85,49,25,.03)),url("https://images.unsplash.com/photo-1617038260897-41a1f14a8ca0?auto=format&fit=crop&w=1900&q=85") center 48%/cover}
+.hero-copy{max-width:450px}
+.hero h1{font:500 clamp(58px,7vw,84px)/.85 "Cormorant Garamond",serif;letter-spacing:6px;margin:0 0 12px}
+.hero .tagline{font:500 10px Montserrat;letter-spacing:3px;margin:0 0 23px}
+.hero h2{font:italic 400 clamp(27px,3vw,38px)/1.04 "Cormorant Garamond",serif;margin:0;text-shadow:0 1px 4px #44250f55}
+.hero-dots{display:flex;gap:8px;margin:27px 0 0 43%}
+.hero-dots i{width:9px;height:9px;background:#fff;border-radius:50%;opacity:.65}
+.hero-dots i:first-child{opacity:1}
+
+.section{padding:25px 3.5%}
+.section-heading{display:flex;align-items:center;justify-content:center;gap:18px;text-align:center;margin:0 0 16px}
+.section-heading:before,.section-heading:after{content:"";height:1px;background:var(--gold2);flex:1;max-width:260px}
+.section-heading h2{font:500 34px/1 "Cormorant Garamond",serif;margin:0}
+.section-heading p{font:12px "Cormorant Garamond",serif;margin:4px 0 0}
+
+.collections{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.collection{height:190px;position:relative;border-radius:9px;overflow:hidden;background:#c8a98b}
+.collection img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
+.collection:hover img{transform:scale(1.06)}
+.collection:after{content:"";position:absolute;inset:0;background:linear-gradient(transparent 40%,#160e0ac9)}
+.collection-label{position:absolute;z-index:1;left:15px;bottom:13px;color:#fff}
+.collection-label strong{display:block;font:500 22px/1 "Cormorant Garamond",serif}
+.collection-label span{display:block;font:9px Montserrat;margin-top:7px;letter-spacing:.5px}
+
+.featured{padding-top:22px;padding-bottom:32px}
+.products{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;max-width:1040px;margin:0 auto}
+.product{background:#fff8f0;border:1px solid #e6d4c0;border-radius:10px;overflow:hidden;text-align:center;transition:.2s}
+.product:hover{transform:translateY(-3px);box-shadow:0 7px 20px #54331b17}
+.product-photo{height:clamp(150px,18vw,210px);position:relative;background:#eee0d1}
+.product-photo img{width:100%;height:100%;object-fit:cover}
+.favorite{position:absolute;right:9px;top:9px;width:29px;height:29px;border:0;border-radius:50%;background:#fff9;color:var(--deep);font-size:20px;line-height:1}
+.favorite.active{color:#b34b45}
+.product-info{padding:9px 10px 12px}
+.product-name{font:500 16px "Cormorant Garamond",serif;margin:0 0 3px}
+.product-price{font:600 14px "Cormorant Garamond",serif;margin:0 0 8px}
+.add{border:0;border-radius:22px;background:linear-gradient(90deg,#bd8b49,#a87536);color:#fff;padding:9px 12px;width:100%;font:500 10px Montserrat}
+.add:hover{filter:brightness(.94)}
+
+.benefits{display:grid;grid-template-columns:repeat(4,1fr);background:#f3e4d3;padding:18px 5%;gap:12px}
+.benefit{display:flex;align-items:center;justify-content:center;gap:12px;border-right:1px solid #c9a77b}
+.benefit:last-child{border:0}
+.benefit-icon{font-size:27px;color:var(--deep)}
+.benefit strong{display:block;font:500 17px/1 "Cormorant Garamond",serif}
+.benefit small{font:10px "Cormorant Garamond",serif}
+
+footer{background:#fff7ee;padding:28px 5% 18px;border-top:1px solid #e8d5bf}
+.footer-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:25px;align-items:center}
+.footer-brand{text-align:left}
+.footer-brand .brand{font-size:49px;justify-self:start}
+.footer-brand p{font:14px "Cormorant Garamond",serif}
+.footer-title{font:600 17px "Cormorant Garamond",serif;color:var(--deep);margin-bottom:10px}
+.footer-col{text-align:center;border-left:1px solid var(--line);padding:8px}
+.footer-col p{font:12px "Cormorant Garamond",serif;margin:8px 0}
+.footer-col a:hover{color:var(--gold)}
+.footer-bottom{border-top:1px solid var(--line);margin-top:18px;padding-top:12px;text-align:center;font:16px "Cormorant Garamond",serif}
+.footer-bottom small{display:block;font:9px Montserrat;margin-top:5px}
+
+.cart-shade{position:fixed;inset:0;background:#24170f88;z-index:49;opacity:0;visibility:hidden;transition:.25s}
+.cart-shade.show{opacity:1;visibility:visible}
+.cart-panel{position:fixed;z-index:50;right:0;top:0;height:100dvh;width:min(390px,94vw);background:#fff8f0;box-shadow:-8px 0 30px #2a160f22;transform:translateX(105%);transition:.28s;padding:20px;overflow:auto}
+.cart-panel.open{transform:translateX(0)}
+.cart-head{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line);padding-bottom:13px}
+.cart-head h2{font:500 27px "Cormorant Garamond",serif;margin:0}
+.close-cart{border:0;background:none;color:var(--deep);font-size:27px}
+.cart-items{padding:5px 0}
+.cart-item{display:grid;grid-template-columns:68px 1fr auto;gap:10px;align-items:center;padding:12px 0;border-bottom:1px solid #eadbca}
+.cart-item img{width:68px;height:68px;object-fit:cover;border-radius:7px}
+.cart-item-name{font:600 14px "Cormorant Garamond",serif}
+.cart-item-price{font:600 13px "Cormorant Garamond",serif;margin-top:3px}
+.qty{display:flex;align-items:center;gap:8px;margin-top:7px;font-size:12px}
+.qty button{width:23px;height:23px;border:1px solid #c9a77b;background:#fff;border-radius:50%;color:var(--deep)}
+.remove{border:0;background:none;color:#9a5146;font-size:19px}
+.shipping-note{background:#f4e2ce;border-radius:12px;padding:15px 13px;text-align:center;margin:14px 0}
+.shipping-note h3{font:600 18px "Cormorant Garamond",serif;color:#98662d;margin:0 0 8px}
+.shipping-note strong{font:600 14px "Cormorant Garamond",serif;display:block}
+.shipping-note p{font:12px/1.55 "Cormorant Garamond",serif;margin:8px 0 0;color:#735b43}
+.cart-summary{border-top:1px solid var(--line);padding-top:12px}
+.subtotal{display:flex;justify-content:space-between;font:600 15px "Cormorant Garamond",serif}
+.freight-excluded{text-align:center;font:12px "Cormorant Garamond",serif;margin:9px 0 13px}
+.checkout{width:100%;border:0;border-radius:9px;background:linear-gradient(90deg,#bd8b49,#a87536);color:#fff;padding:14px 10px;font:600 12px Montserrat}
+.empty-cart{text-align:center;padding:30px 10px;color:#806b55;font:16px "Cormorant Garamond",serif}
+.empty-cart span{font-size:35px;display:block;margin-bottom:8px}
+.toast{position:fixed;bottom:20px;left:50%;transform:translate(-50%,20px);opacity:0;pointer-events:none;background:#49301f;color:#fff;padding:11px 18px;border-radius:24px;font:12px Montserrat;z-index:80;transition:.25s}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+
+@media(max-width:760px){
+.site-header{height:72px;grid-template-columns:48px 1fr 95px;padding:0 10px}
+.brand{font-size:39px;letter-spacing:3px}
+.brand small{font-size:8px}
+.header-actions{gap:3px}
+.header-icon{font-size:22px;padding:6px}
+.hero{height:310px;min-height:310px;padding:28px 7%;background-position:58% center}
+.hero h1{font-size:62px}
+.hero h2{font-size:29px}
+.collections{grid-template-columns:repeat(2,1fr)}
+.collection{height:165px}
+.collection-label strong{font-size:20px}
+.products{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+.product-photo{height:165px}
+.section-heading h2{font-size:29px}
+.benefits{grid-template-columns:repeat(2,1fr);padding:15px 3%}
+.benefit{justify-content:flex-start;border:0;padding:6px}
+.benefit strong{font-size:15px}
+.footer-grid{grid-template-columns:1fr;gap:8px}
+.footer-brand{text-align:center}
+.footer-brand .brand{justify-self:center}
+.footer-col{border:0;border-top:1px solid var(--line)}
+}
+@media(max-width:380px){
+.brand{font-size:33px}
+.header-actions{gap:0}
+.hero h1{font-size:53px}
+.collection{height:145px}
+.collection-label{left:10px}
+.collection-label strong{font-size:18px}
+}
+</style>
+</head>
+<body>
+
+<div class="announcement">✧　FRETE SERÁ INFORMADO PELO NOSSO ATENDIMENTO　✧</div>
+
+<header class="site-header">
+  <button class="menu-toggle" aria-label="Abrir menu" onclick="toggleDrawer(true)">☰</button>
+  <a class="brand" href="#inicio" aria-label="LYRIO início">LYRIO<small>✿ PRATA 925 • SEMIJOIAS ✿</small></a>
+  <div class="header-actions">
+    <button class="header-icon" aria-label="Ver favoritos" onclick="showFavorites()">♡<span class="count" id="favCount">0</span></button>
+    <button class="header-icon" aria-label="Abrir carrinho" onclick="toggleCart(true)">♧<span class="count" id="cartCount">0</span></button>
+  </div>
+</header>
+
+<div class="drawer-shade" id="drawerShade" onclick="toggleDrawer(false)"></div>
+<aside class="drawer" id="drawer" aria-label="Menu principal">
+  <div class="drawer-top">
+    <a class="brand" href="#inicio" onclick="toggleDrawer(false)">LYRIO<small>✿ PRATA 925 • SEMIJOIAS ✿</small></a>
+    <button class="drawer-close" onclick="toggleDrawer(false)" aria-label="Fechar menu">×</button>
+  </div>
+  <nav class="drawer-nav">
+    <a href="#inicio" onclick="toggleDrawer(false)">⌂ <span>Início</span></a>
+    <button onclick="toggleContact()">☏ <span>Contato</span></button>
+    <div class="contact-question" id="contactQuestion">
+      <p>Deseja tirar suas dúvidas pelo WhatsApp?</p>
+      <div class="question-actions">
+        <button onclick="contactWhatsApp()">Sim</button>
+        <button onclick="toggleContact(false)">Não</button>
+      </div>
+    </div>
+    <a href="https://chat.whatsapp.com/Lwfvwia8UD34Vr41Hki3z5?s=cl&p=i&iam=2" target="_blank" rel="noopener">♧ <span>Entrar no Grupo VIP</span></a>
+    <a href="#pratas-femininas" onclick="toggleDrawer(false)">◇ <span>Pratas Femininas</span></a>
+    <a href="#semijoias-femininas" onclick="toggleDrawer(false)">◇ <span>Semijoias Femininas</span></a>
+    <a href="#pratas-masculinas" onclick="toggleDrawer(false)">♂ <span>Pratas Masculinas</span></a>
+    <a href="#semijoias-masculinas" onclick="toggleDrawer(false)">♕ <span>Semijoias Masculinas</span></a>
+  </nav>
+  <div class="drawer-mark">❀ LYRIO ❀<small>Elegância que combina com você ♡</small></div>
+</aside>
+
+<main id="inicio">
+<section class="hero" aria-label="Apresentação LYRIO">
+  <div class="hero-copy">
+    <h1>LYRIO</h1>
+    <p class="tagline">✿ PRATA 925 • SEMIJOIAS ✿</p>
+    <h2>Elegância, delicadeza<br>e sofisticação.</h2>
+    <div class="hero-dots" aria-hidden="true"><i></i><i></i><i></i></div>
+  </div>
+</section>
+
+<section class="section" id="colecoes">
+  <div class="section-heading"><div><h2>Nossas Coleções</h2><p>Beleza em cada detalhe</p></div></div>
+  <div class="collections">
+    <a class="collection" id="pratas-femininas" href="#destaques" onclick="selectCategory('fem-prata')">
+      <img src="https://images.unsplash.com/photo-1617038260897-41a1f14a8ca0?auto=format&fit=crop&w=800&q=85" alt="Joias femininas em prata">
+      <div class="collection-label"><strong>Pratas<br>Femininas</strong><span>VER COLEÇÃO →</span></div>
+    </a>
+    <a class="collection" id="semijoias-femininas" href="#destaques" onclick="selectCategory('fem-semi')">
+      <img src="https://images.unsplash.com/photo-1611652022419-a9419f74343d?auto=format&fit=crop&w=800&q=85" alt="Semijoias femininas">
+      <div class="collection-label"><strong>Semijoias<br>Femininas</strong><span>VER COLEÇÃO →</span></div>
+    </a>
+    <a class="collection" id="pratas-masculinas" href="#destaques" onclick="selectCategory('masc-prata')">
+      <img src="https://images.unsplash.com/photo-1611591437281-460bfbe1220a?auto=format&fit=crop&w=800&q=85" alt="Corrente masculina em prata">
+      <div class="collection-label"><strong>Pratas<br>Masculinas</strong><span>VER COLEÇÃO →</span></div>
+    </a>
+    <a class="collection" id="semijoias-masculinas" href="#destaques" onclick="selectCategory('masc-semi')">
+      <img src="https://images.unsplash.com/photo-1611652022419-a9419f74343d?auto=format&fit=crop&w=800&q=85" alt="Pulseira masculina">
+      <div class="collection-label"><strong>Semijoias<br>Masculinas</strong><span>VER COLEÇÃO →</span></div>
+    </a>
+  </div>
+</section>
+
+<section class="section featured" id="destaques">
+  <div class="section-heading"><div><h2>Nossos Destaques</h2><p>Qualidade e estilo em cada peça</p></div></div>
+  <div class="products" id="products">
+    <article class="product" data-category="fem-prata">
+      <div class="product-photo"><img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=700&q=85" alt="Anel Prata 925"></div>
+      <div class="product-info"><p class="product-name">Anel Prata 925</p><p class="product-price">R$ 99,90</p><button class="add" onclick="addToCart(1)">♧ Adicionar ao Carrinho</button></div>
+    </article>
+    <article class="product" data-category="masc-semi">
+      <div class="product-photo"><img src="https://images.unsplash.com/photo-1611652022419-a9419f74343d?auto=format&fit=crop&w=700&q=85" alt="Pulseira Semijoia Gold"></div>
+      <div class="product-info"><p class="product-name">Pulseira Semijoia Gold</p><p class="product-price">R$ 89,90</p><button class="add" onclick="addToCart(2)">♧ Adicionar ao Carrinho</button></div>
+    </article>
+    <article class="product" data-category="masc-prata">
+      <div class="product-photo"><img src="https://images.unsplash.com/photo-1611591437281-460bfbe1220a?auto=format&fit=crop&w=700&q=85" alt="Corrente Prata 925"></div>
+      <div class="product-info"><p class="product-name">Corrente Prata 925</p><p class="product-price">R$ 129,90</p><button class="add" onclick="addToCart(3)">♧ Adicionar ao Carrinho</button></div>
+    </article>
+    <article class="product" data-category="masc-semi">
+      <div class="product-photo"><img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=700&q=85" alt="Relógio Masculino"></div>
+      <div class="product-info"><p class="product-name">Relógio Masculino</p><p class="product-price">R$ 199,90</p><button class="add" onclick="addToCart(4)">♧ Adicionar ao Carrinho</button></div>
+    </article>
+  </div>
+  <p style="text-align:center;color:#927858;font:10px Montserrat;margin:13px 0 0">* Produtos, imagens e preços demonstrativos.</p>
+</section>
+
+<section class="benefits">
+  <div class="benefit"><span class="benefit-icon">♢</span><div><strong>Compra Segura</strong><small>e Confiável</small></div></div>
+  <div class="benefit"><span class="benefit-icon">♧</span><div><strong>Entrega para</strong><small>todo o Brasil</small></div></div>
+  <div class="benefit"><span class="benefit-icon">☏</span><div><strong>Atendimento</strong><small>pelo WhatsApp</small></div></div>
+  <div class="benefit"><span class="benefit-icon">♕</span><div><strong>Embalagem</strong><small>Especial</small></div></div>
+</section>
+</main>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand"><a class="brand" href="#inicio">LYRIO<small>✿ PRATA 925 • SEMIJOIAS ✿</small></a><p>Elegância que combina com você ♡</p></div>
+    <div class="footer-col"><div class="footer-title">Acompanhe-nos</div><p><a href="https://instagram.com/shop_lyrio" target="_blank" rel="noopener">◎　@shop_lyrio</a></p><p><a href="https://wa.me/5511994263229" target="_blank" rel="noopener">☏　(11) 99426-3229</a></p></div>
+    <div class="footer-col"><div class="footer-title">Informações</div><p>Atendimento personalizado</p><p>Produtos de qualidade</p><p>Envios para todo o Brasil</p><p><a href="https://chat.whatsapp.com/Lwfvwia8UD34Vr41Hki3z5?s=cl&p=i&iam=2" target="_blank" rel="noopener">Entrar no Grupo VIP</a></p></div>
+  </div>
+  <div class="footer-bottom">LYRIO • Elegância que combina com você ♡<small>© 2026 LYRIO. Todos os direitos reservados.</small></div>
+</footer>
+
+<div class="cart-shade" id="cartShade" onclick="toggleCart(false)"></div>
+<aside class="cart-panel" id="cartPanel" aria-label="Seu carrinho">
+  <div class="cart-head"><h2>♧　Seu Carrinho</h2><button class="close-cart" onclick="toggleCart(false)" aria-label="Fechar carrinho">×</button></div>
+  <div class="cart-items" id="cartItems"><div class="empty-cart"><span>♡</span>Seu carrinho está vazio.</div></div>
+  <div class="shipping-note">
+    <h3>♡ Um detalhe especial ♡</h3>
+    <strong>O frete será informado pelo nosso atendimento.</strong>
+    <p>Após finalizar seu pedido, nossa equipe entrará em contato pelo WhatsApp para informar o valor da entrega.</p>
+  </div>
+  <div class="cart-summary">
+    <div class="subtotal"><span>Subtotal dos produtos</span><span id="subtotal">R$ 0,00</span></div>
+    <p class="freight-excluded">Frete não incluso.</p>
+    <button class="checkout" onclick="checkout()">☏　Finalizar pedido pelo WhatsApp</button>
+  </div>
+</aside>
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+const WHATSAPP='5511994263229';
+const vipLink='https://chat.whatsapp.com/Lwfvwia8UD34Vr41Hki3z5?s=cl&p=i&iam=2';
+const products=[
+ {id:1,name:'Anel Prata 925',price:99.90,category:'fem-prata',image:'https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=700&q=85'},
+ {id:2,name:'Pulseira Semijoia Gold',price:89.90,category:'masc-semi',image:'https://images.unsplash.com/photo-1611652022419-a9419f74343d?auto=format&fit=crop&w=700&q=85'},
+ {id:3,name:'Corrente Prata 925',price:129.90,category:'masc-prata',image:'https://images.unsplash.com/photo-1611591437281-460bfbe1220a?auto=format&fit=crop&w=700&q=85'},
+ {id:4,name:'Relógio Masculino',price:199.90,category:'masc-semi',image:'https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=700&q=85'}
+];
+let cart=[],favorites=new Set();
+const money=v=>v.toLocaleString('pt-BR',{style:'currency',currency:'BRL'});
+
+function toggleDrawer(open){
+ document.getElementById('drawer').classList.toggle('open',open);
+ document.getElementById('drawerShade').classList.toggle('show',open);
+}
+function toggleContact(force){
+ const el=document.getElementById('contactQuestion');
+ el.classList.toggle('show',force===undefined?!el.classList.contains('show'):force);
+}
+function contactWhatsApp(){
+ window.open('https://wa.me/'+WHATSAPP+'?text='+encodeURIComponent('Olá! Gostaria de tirar algumas dúvidas sobre os produtos da LYRIO.'),'_blank','noopener');
+ toggleDrawer(false);
+}
+function toggleCart(open){
+ document.getElementById('cartPanel').classList.toggle('open',open);
+ document.getElementById('cartShade').classList.toggle('show',open);
+ if(open)renderCart();
+}
+function addToCart(id){
+ const item=cart.find(p=>p.id===id);
+ if(item)item.qty++;
+ else cart.push({...products.find(p=>p.id===id),qty:1});
+ renderCart();
+ toast('Peça adicionada ao carrinho!');
+}
+function changeQty(id,delta){
+ const item=cart.find(p=>p.id===id);
+ if(!item)return;
+ item.qty+=delta;
+ if(item.qty<=0)cart=cart.filter(p=>p.id!==id);
+ renderCart();
+}
+function removeItem(id){
+ cart=cart.filter(p=>p.id!==id);
+ renderCart();
+}
+function renderCart(){
+ const count=cart.reduce((s,p)=>s+p.qty,0);
+ const subtotal=cart.reduce((s,p)=>s+p.price*p.qty,0);
+ document.getElementById('cartCount').textContent=count;
+ document.getElementById('subtotal').textContent=money(subtotal);
+ const holder=document.getElementById('cartItems');
+ if(!cart.length){
+  holder.innerHTML='<div class="empty-cart"><span>♡</span>Seu carrinho está vazio.</div>';
+  return;
+ }
+ holder.innerHTML=cart.map(p=>`
+ <div class="cart-item">
+  <img src="${p.image}" alt="${p.name}">
+  <div>
+   <div class="cart-item-name">${p.name}</div>
+   <div class="cart-item-price">${money(p.price)}</div>
+   <div class="qty">
+    <button onclick="changeQty(${p.id},-1)" aria-label="Diminuir">−</button>
+    <span>${p.qty}</span>
+    <button onclick="changeQty(${p.id},1)" aria-label="Aumentar">+</button>
+   </div>
+  </div>
+  <button class="remove" onclick="removeItem(${p.id})" aria-label="Remover ${p.name}">♧</button>
+ </div>`).join('');
+}
+function checkout(){
+ if(!cart.length){
+  toast('Adicione uma peça ao carrinho primeiro.');
+  return;
+ }
+ const subtotal=cart.reduce((s,p)=>s+p.price*p.qty,0);
+ let msg='Olá! Gostaria de finalizar um pedido na LYRIO. 💛\n\n*MEU PEDIDO*\n';
+ cart.forEach(p=>msg+=`• ${p.name} — ${p.qty}x — ${money(p.price*p.qty)}\n`);
+ msg+=`\n*Subtotal dos produtos: ${money(subtotal)}*\nFrete: a informar pelo atendimento.\n\nPor favor, informe o valor do frete e as opções para concluir meu pedido.`;
+ window.open('https://wa.me/'+WHATSAPP+'?text='+encodeURIComponent(msg),'_blank','noopener');
+}
+function selectCategory(category){
+ document.querySelectorAll('.product').forEach(el=>{
+  el.style.display=el.dataset.category===category?'':'none';
+ });
+}
+function showFavorites(){
+ const ids=[...favorites];
+ if(!ids.length){
+  toast('Você ainda não adicionou favoritos.');
+  return;
+ }
+ toast('Seus favoritos estão marcados nas peças em destaque.');
+ document.getElementById('destaques').scrollIntoView({behavior:'smooth'});
+}
+function toast(message){
+ const el=document.getElementById('toast');
+ el.textContent=message;
+ el.classList.add('show');
+ clearTimeout(window.toastTimer);
+ window.toastTimer=setTimeout(()=>el.classList.remove('show'),2300);
+}
+document.querySelectorAll('.product').forEach((card,index)=>{
+ const button=document.createElement('button');
+ button.className='favorite';
+ button.type='button';
+ button.textContent='♡';
+ button.setAttribute('aria-label','Adicionar aos favoritos');
+ button.addEventListener('click',()=>{
+  const id=index+1;
+  if(favorites.has(id)){
+   favorites.delete(id);
+   button.classList.remove('active');
+   button.textContent='♡';
+  }else{
+   favorites.add(id);
+   button.classList.add('active');
+   button.textContent='♥';
+  }
+  document.getElementById('favCount').textContent=favorites.size;
+  toast(favorites.has(id)?'Adicionado aos favoritos.':'Removido dos favoritos.');
+ });
+ card.querySelector('.product-photo').appendChild(button);
+});
+document.addEventListener('keydown',e=>{
+ if(e.key==='Escape'){
+  toggleDrawer(false);
+  toggleCart(false);
+ }
+});
+renderCart();
+</script>
+</body>
+</html>
